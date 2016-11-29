@@ -1,0 +1,55 @@
+diff -ur b/drivers/media/pci/cx88/cx88-cards.c linux-source-4.2.0/drivers/media/pci/cx88/cx88-cards.c
+--- b/drivers/media/pci/cx88/cx88-cards.c       2015-08-31 02:34:09.000000000 +0800
++++ linux-source-4.2.0/drivers/media/pci/cx88/cx88-cards.c      2016-01-17 23:58:07.374707151 +0800
+@@ -1425,6 +1425,28 @@
+                        .gpio0  = 0x070b,
+                } },
+        },
++    [CX88_BOARD_10MOON_TVBABY_III] = {
++        /* "Jason Jiang" <catinsnow@gmail.com> */
++         .name           = "10MOON TVBABYIII",
++         .tuner_type     = TUNER_LG_PAL_NEW_TAPC,
++         .radio_type     = UNSET,
++         .tuner_addr     = ADDR_UNSET,
++         .radio_addr     = ADDR_UNSET,
++         .input          = {{
++             .type   = CX88_VMUX_TELEVISION,
++             .vmux   = 0,
++             .gpio0  = 0x00ff8fff,
++             .gpio1  = 0x00007000,
++             .gpio2  = 0x00ff8fff,
++             .gpio3  = 0x02000000,
++         },{
++             .type   = CX88_VMUX_COMPOSITE1,
++             .gpio0  = 0x00ffafff,
++             .gpio1  = 0x00007000,
++             .gpio2  = 0x00ffafff,
++             .gpio3  = 0x02000000,
++         }},
++    },
+        [CX88_BOARD_TE_DTV_250_OEM_SWANN] = {
+                .name           = "Shenzhen Tungsten Ages Tech TE-DTV-250 / Swann OEM",
+                .tuner_type     = TUNER_LG_PAL_NEW_TAPC,
+@@ -2600,6 +2622,10 @@
+                .subdevice = 0xc980,
+                .card      = CX88_BOARD_TE_DTV_250_OEM_SWANN,
+        }, {
++               .subvendor = 0x1131,
++               .subdevice = 0x3504,
++               .card      = CX88_BOARD_10MOON_TVBABY_III,
++       }, {
+                .subvendor = 0x0070,
+                .subdevice = 0x9600,
+                .card      = CX88_BOARD_HAUPPAUGE_HVR1300,
+diff -ur b/drivers/media/pci/cx88/cx88.h linux-source-4.2.0/drivers/media/pci/cx88/cx88.h
+--- b/drivers/media/pci/cx88/cx88.h     2015-08-31 02:34:09.000000000 +0800
++++ linux-source-4.2.0/drivers/media/pci/cx88/cx88.h    2016-01-17 22:51:34.061433587 +0800
+@@ -237,7 +237,7 @@
+ #define CX88_BOARD_WINFAST_DTV1800H_XC4000 88
+ #define CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F36 89
+ #define CX88_BOARD_WINFAST_TV2000_XP_GLOBAL_6F43 90
+-
++#define CX88_BOARD_10MOON_TVBABY_III       91
+ enum cx88_itype {
+        CX88_VMUX_COMPOSITE1 = 1,
+        CX88_VMUX_COMPOSITE2,				
